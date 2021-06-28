@@ -27,12 +27,12 @@ public class HibernateConfig {
 		options.put("hibernate.dialect", "org.sqlite.hibernate.dialect.SQLiteDialect");
 		//<property name="hibernate.show_sql">true</property>
 		options.put("hibernate.show_sql", "true");
-        //<property name="hibernate.hbm2ddl.auto">create</property>
+                //<property name="hibernate.hbm2ddl.auto">create</property>
 		options.put("hibernate.hbm2ddl.auto", "update");
 		
 		SessionFactory factory = new org.hibernate.cfg.Configuration()
 				.addProperties(options)
-				//<mapping class="fr.ldnr.julesflores.mavenproject4.Inscription"/> 
+				//<mapping class="fr.ldnr.julesflores.clairetoutanejulesbibliotheque.Livre"/> 
 				.addAnnotatedClass(Livre.class)
 				.buildSessionFactory();
 		return factory;
