@@ -124,3 +124,7 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/netbeans,java,linux,windows,macos,java-web,maven
+
+# Ajout perso
+bibliothequeData.sqlite
+nbactions.xml
