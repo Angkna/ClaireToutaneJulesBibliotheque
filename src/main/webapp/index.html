@@ -6,11 +6,49 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Page 1</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                text-align: center;
+                margin: 0% 20%;
+            }
+
+            section {
+                border: 1px solid black;
+                text-align: center;
+                padding: 10px;
+                font-size : 12px;
+                margin: 0% 20%;
+            }
+
+            input {
+                margin: 5px;
+                width : 50%;
+            }
+        </style>
     </head>
     <body>
-        <div>Hello!</div>
+        <h1>Bienvenue à la bibliothèque !</h1>
+
+        <section>
+            <!-- Données demandées à l'utilisateu : Nom, nb Adultes, nb Enfants, Mois de départ, Luxe, Envoyer-->
+            <br>
+            <label for="titre">Titre : </label><br> 
+            <input type="text" id="titre"><br>
+            <label for="annee">Année : </label><br> 
+            <input type="number" id="annee" min="1"><br> 
+            <label for="editeur">&Eacute;diteur : </label><br> 
+            <input type="text" id="editeur"><br>
+            <label for="nomA">Nom de l'auteur : </label><br> 
+            <input type="text" id="nomA"><br>
+            <label for="prenomA">Pr&eacute;nom de l'auteur : </label><br> 
+            <input type="text" id="prenomA"><br><br>
+
+            <button id="envoyer">Envoyer</button>
+            <p id="message"></p>
+            <br>
+        </section>
     </body>
 </html>
