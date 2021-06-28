@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 /**
  *
  * @author stag
@@ -71,6 +72,8 @@ public class Emprunt implements Serializable {
     public void setDateRendu(Date dateRendu) {
         this.dateRendu = dateRendu;
     }
+    
+        
     
 }
 
