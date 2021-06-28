@@ -3,12 +3,44 @@
         <action>
             <actionName>run</actionName>
             <packagings>
-                <packaging>war</packaging>
-                <packaging>ear</packaging>
-                <packaging>ejb</packaging>
+                <packaging>jar</packaging>
             </packagings>
             <goals>
-                <goal>package</goal>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:3.0.0:exec</goal>
             </goals>
+            <properties>
+                <exec.args>-classpath %classpath fr.ldnr.clairetoutanejulesbibliotheque.MainApplication</exec.args>
+                <exec.executable>java</exec.executable>
+            </properties>
+        </action>
+        <action>
+            <actionName>debug</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:3.0.0:exec</goal>
+            </goals>
+            <properties>
+                <exec.args>-agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address} -classpath %classpath fr.ldnr.clairetoutanejulesbibliotheque.MainApplication</exec.args>
+                <exec.executable>java</exec.executable>
+                <jpda.listen>true</jpda.listen>
+            </properties>
+        </action>
+        <action>
+            <actionName>profile</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:3.0.0:exec</goal>
+            </goals>
+            <properties>
+                <exec.args>-classpath %classpath fr.ldnr.clairetoutanejulesbibliotheque.MainApplication</exec.args>
+                <exec.executable>java</exec.executable>
+            </properties>
         </action>
     </actions>
