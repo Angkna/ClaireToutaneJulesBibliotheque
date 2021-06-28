@@ -7,7 +7,7 @@ package fr.ldnr.clairetoutanejulesbibliotheque;
 
 /**
  *
- * @author stag
+ * @author Claire
  */
 public class Livre {
     
