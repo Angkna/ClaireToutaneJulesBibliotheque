@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class HibernateConfig {
 
+
     //On recree la configuration en java (a la place du fichier xml : hibernate.cfg.xml)
     @Bean
     public SessionFactory sessionFactory() {
