@@ -5,7 +5,6 @@
  */
 package fr.ldnr.clairetoutanejulesbibliotheque;
 
-import static fr.ldnr.clairetoutanejulesbibliotheque.Page1Controller.logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -24,27 +23,28 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/page2")
 public class Page2Controller {
+
     //on ajoute un logger pour savoir si le serveur fonctionne
-	public static final Logger logger = LoggerFactory.getLogger( Page2Controller.class);
-	
-         public SessionFactory sessionFactory;
-        // Permet de créer une SessionFactory avec les configurations souhaitées automatiquement
-	@Autowired
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-        @RequestMapping(value="/envoi", method=RequestMethod.POST)
+    public static final Logger logger = LoggerFactory.getLogger(Page2Controller.class);
 
-	public String envoi(@RequestBody Emprunt emprunt) {
-		logger.info("" + emprunt);
-		Session session = sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		session.save(emprunt);
-		tx.commit();
-		session.close();
+    public SessionFactory sessionFactory;
+    // Permet de créer une SessionFactory avec les configurations souhaitées automatiquement
+    @Autowired
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
-		return "Reçu !";
+    @RequestMapping(value = "/envoi", method = RequestMethod.POST)
+    public String envoi(@RequestBody Emprunt emprunt) {
+        logger.info("" + emprunt);
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        session.save(emprunt);
+        tx.commit();
+        session.close();
 
-	}
-    
+        return "Reçu !";
+
+    }
+
 }

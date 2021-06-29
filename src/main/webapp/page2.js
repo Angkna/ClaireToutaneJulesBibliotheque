@@ -3,7 +3,7 @@ $(function() {
 	$("#enregistrer").on('click', function(){
 		$("#message").html("Enregistrer !");
 		let titreLivre = $("#titreLivre").val();
-		let dateEmprunt= $("#dateEmprunt").val();
+		let dateEmprunt = $("#dateEmprunt").val();
                 let nomEmprunteur=$("#nomEmprunt").val();
 		
 //		Envoyer les données vers le serveur à l'addresse /page2 et mettre les données dans  la requête
