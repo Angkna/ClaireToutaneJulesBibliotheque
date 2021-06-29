@@ -6,7 +6,7 @@
 package fr.ldnr.clairetoutanejulesbibliotheque;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,26 +15,28 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 /**
  * Entité emprunt
- * 
+ *
  */
 @Entity
-@Table (name="Emprunts")
+@Table(name = "Emprunts")
 @SuppressWarnings("PersistenceUnitPresent")
 public class Emprunt implements Serializable {
-    private static final long serialVersionUID=1L;
-   private int id;
+
+    private static final long serialVersionUID = 1L;
+    private int id;
     private Livre livre;
     private String nomUser;
-    private Date dateEmprunt;
-    private Date dateRendu;
+    private LocalDate dateEmprunt;
+    private LocalDate dateRendu;
 
     public Emprunt() {
-        
+
     }
-@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -43,7 +45,7 @@ public class Emprunt implements Serializable {
         this.id = id;
     }
 
-@ManyToOne
+    @ManyToOne
     public Livre getLivre() {
         return livre;
     }
@@ -51,7 +53,8 @@ public class Emprunt implements Serializable {
     public void setLivre(Livre livre) {
         this.livre = livre;
     }
-@Column (length=100, nullable = false)
+
+    @Column(length = 100, nullable = false)
     public String getNomUser() {
         return nomUser;
     }
@@ -59,24 +62,23 @@ public class Emprunt implements Serializable {
     public void setNomUser(String nomUser) {
         this.nomUser = nomUser;
     }
-@Column
-    public Date getDateEmprunt() {
+
+    @Column
+    public LocalDate getDateEmprunt() {
         return dateEmprunt;
     }
 
-    public void setDateEmprunt(Date dateEmprunt) {
+    public void setDateEmprunt(LocalDate dateEmprunt) {
         this.dateEmprunt = dateEmprunt;
     }
-@Column
-    public Date getDateRendu() {
+
+    @Column
+    public LocalDate getDateRendu() {
         return dateRendu;
     }
 
-    public void setDateRendu(Date dateRendu) {
+    public void setDateRendu(LocalDate dateRendu) {
         this.dateRendu = dateRendu;
     }
-    
-        
-    
-}
 
+}
