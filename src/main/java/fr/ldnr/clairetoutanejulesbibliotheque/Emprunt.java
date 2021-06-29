@@ -17,11 +17,12 @@ import javax.persistence.Table;
 
 
 /**
- *
- * @author stag
+ * Entité emprunt
+ * 
  */
 @Entity
 @Table (name="Emprunts")
+@SuppressWarnings("PersistenceUnitPresent")
 public class Emprunt implements Serializable {
     private static final long serialVersionUID=1L;
    private int id;
@@ -41,7 +42,7 @@ public class Emprunt implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
-@Column 
+    
 @ManyToOne
     public Livre getLivre() {
         return livre;

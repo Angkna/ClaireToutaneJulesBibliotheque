@@ -20,7 +20,7 @@ import javax.persistence.Column;
 
 @Entity // La classe sera stockée
 @Table(name = "livres") // Sans précision, la table s'appellera du même nom que la classe.
-
+@SuppressWarnings("PersistenceUnitPresent")
 public class Livre implements Serializable {
     private int id;
     private String titre;
