@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -41,6 +42,7 @@ public class Emprunt implements Serializable {
         this.id = id;
     }
 @Column 
+@ManyToOne
     public Livre getLivre() {
         return livre;
     }
