@@ -41,7 +41,7 @@ public class Emprunt implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
-@Column 
+
 @ManyToOne
     public Livre getLivre() {
         return livre;
