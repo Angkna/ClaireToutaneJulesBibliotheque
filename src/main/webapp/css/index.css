@@ -1,0 +1,17 @@
+body {
+    text-align: center;
+    margin: 0% 20%;
+}
+
+section {
+    border: 1px solid black;
+    text-align: center;
+    padding: 10px;
+    font-size : 12px;
+    margin: 0% 20%;
+}
+
+input {
+    margin: 5px;
+    width : 50%;
+}

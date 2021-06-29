@@ -1,18 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package fr.ldnr.clairetoutanejulesbibliotheque;
-
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 /**
  * @author Claire
  * @version 28/June/2021 p.m.
+ * Controller REST pour la mise en base de donnée
+ * d'objet livre via la page index.html
  */
+package fr.ldnr.clairetoutanejulesbibliotheque;
 
+import org.hibernate.HibernateException;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.slf4j.Logger;
@@ -29,26 +23,30 @@ import org.hibernate.Transaction;
 public class Page1Controller {
 
     public static final Logger logger = LoggerFactory.getLogger(Page1Controller.class);
-    
+
     public SessionFactory sessionFactory;
-        // Permet de créer une SessionFactory avec les configurations souhaitées automatiquement
-	@Autowired
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
     
-    @RequestMapping(value="/envoi", method=RequestMethod.POST)
+    // Permet de créer une SessionFactory avec les configurations souhaitées automatiquement
+    @Autowired
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
-	public String envoi(@RequestBody Livre livre) {
-		logger.info("" + livre);
-		Session session = sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		session.save(livre);
-		tx.commit();
-		session.close();
-
-		return "Reçu !";
-
-	}
-
+    @RequestMapping(value = "/envoi", method = RequestMethod.POST)
+    public String envoi(@RequestBody Livre livre) {
+        logger.info("" + livre);
+        try (Session session = sessionFactory.openSession()) {
+            Transaction tx = session.beginTransaction();
+            try {
+                session.save(livre);
+                tx.commit();
+                session.close();
+                return "Reçu !";
+            } catch (HibernateException e) {
+                tx.rollback();
+                logger.warn("ROLLBACK : " + e.getMessage());
+            }
+        }
+        return "Erreur ?";
+    }
 }
