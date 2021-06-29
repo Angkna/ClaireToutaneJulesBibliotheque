@@ -17,11 +17,7 @@ $(function() {
 		$.ajax({
 			url:"/index/envoi",
 			type:"POST",
-<<<<<<< HEAD
 //			dataType:"json", // Type que l'on s'attend à obtenir en retour. Ici, une String.
-=======
-			//dataType:"json",
->>>>>>> 619755dba6036fd7adc5deca7d1d23291d0a2910
 			contentType:"application/json",
 			data:JSON.stringify({
 				"titre":titre,
@@ -31,11 +27,7 @@ $(function() {
                                 "prenomAuteur":prenomAuteur
 			})
 		}).done(function(retour){ // 200
-<<<<<<< HEAD
-			$("#message").html(retour)
-=======
 			$("#message").html(retour);
->>>>>>> 619755dba6036fd7adc5deca7d1d23291d0a2910
 		}).fail(function(){ // 400, 501..
 			$("#message").html("Echec !");
 		});
