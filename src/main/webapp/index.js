@@ -17,7 +17,7 @@ $(function() {
 		$.ajax({
 			url:"/index/envoi",
 			type:"POST",
-			dataType:"json",
+			//dataType:"json",
 			contentType:"application/json",
 			data:JSON.stringify({
 				"titre":titre,
@@ -27,7 +27,7 @@ $(function() {
                                 "prenomAuteur":prenomAuteur
 			})
 		}).done(function(retour){ // 200
-			$("#message").html("Reçu !")
+			$("#message").html("Retour")
 		}).fail(function(){ // 400, 501..
 			$("#message").html("Echec !")
 		})

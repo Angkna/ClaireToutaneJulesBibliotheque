@@ -28,23 +28,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RestController
 @RequestMapping("/index")
 public class Page1Controller {
-//    public static final Logger logger = LoggerFactory.getLogger(Page1Controller.class);
+  public static final Logger logger = LoggerFactory.getLogger(Page1Controller.class);
     
-//    public SessionFactory sessionFactory;
-//	@Autowired
-//	public void setSessionFactory(SessionFactory sessionFactory) {
-//		this.sessionFactory = sessionFactory;
-//	}
-//    
-//    @RequestMapping(value="/envoi", method=RequestMethod.POST)
-//	public String envoi(@RequestBody Livre livre) {
-//		logger.info("" + livre);
-//		Session session = sessionFactory.openSession();
-//		Transaction tx = session.beginTransaction();
-//		session.save(livre);
-//		tx.commit();
-//		session.close();
-//		return "ok";
-//	}
+   public SessionFactory sessionFactory;
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+   
+   @RequestMapping(value="/envoi", method=RequestMethod.POST)
+	public String envoi(@RequestBody Livre livre) {
+		logger.info("" + livre);
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.save(livre);
+		tx.commit();
+		session.close();
+		return "ok";
+	}
 
 }
