@@ -2,7 +2,7 @@ $(function () {
     // sélectionner l'élément d'id "envoyer"
     $("#enregistrer").on('click', function () {
         $("#message").html("Enregistrer !");
-//		let titreLivre = $("#titreLivre").val();
+        let titreLivre = $("#titreLivre").val();
         let dateEmprunt = $("#dateEmprunt").val();
         let nomEmprunteur = $("#nomEmprunteur").val();
 
