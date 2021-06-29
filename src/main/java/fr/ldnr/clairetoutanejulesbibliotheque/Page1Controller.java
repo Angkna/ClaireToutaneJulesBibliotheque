@@ -30,7 +30,10 @@ public class Page1Controller {
     public static final Logger logger = LoggerFactory.getLogger(Page1Controller.class);
     
     public SessionFactory sessionFactory;
+<<<<<<< HEAD
         // Permet de créer une SessionFactory avec les configurations souhaitées automatiquement
+=======
+>>>>>>> 619755dba6036fd7adc5deca7d1d23291d0a2910
 	@Autowired
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
@@ -44,7 +47,11 @@ public class Page1Controller {
 		session.save(livre);
 		tx.commit();
 		session.close();
+<<<<<<< HEAD
 		return "Reçu !";
+=======
+		return "ok";
+>>>>>>> 619755dba6036fd7adc5deca7d1d23291d0a2910
 	}
 
 }
