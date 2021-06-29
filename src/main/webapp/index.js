@@ -17,7 +17,7 @@ $(function() {
 		$.ajax({
 			url:"/index/envoi",
 			type:"POST",
-			dataType:"json",
+//			dataType:"json", // Type que l'on s'attend à obtenir en retour. Ici, une String.
 			contentType:"application/json",
 			data:JSON.stringify({
 				"titre":titre,
@@ -27,7 +27,7 @@ $(function() {
                                 "prenomAuteur":prenomAuteur
 			})
 		}).done(function(retour){ // 200
-			$("#message").html("Reçu !")
+			$("#message").html(retour)
 		}).fail(function(){ // 400, 501..
 			$("#message").html("Echec !")
 		})

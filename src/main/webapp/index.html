@@ -6,9 +6,15 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Page 1</title>
+        <title>Bienvenue à la bibliothèque !</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.6.0.js"
+                integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+                crossorigin="anonymous">
+        </script> 
+        <!-- defer : n'utilise le fichier que quand tout sera prêt. -->
+        <script src="index.js" defer></script>
         <style>
             body {
                 text-align: center;
@@ -30,7 +36,7 @@ and open the template in the editor.
         </style>
     </head>
     <body>
-        <h1>Bienvenue à la bibliothèque !</h1>
+        <h1>Création d'un livre</h1>
 
         <section>
             <!-- Données demandées à l'utilisateu : Nom, nb Adultes, nb Enfants, Mois de départ, Luxe, Envoyer-->
