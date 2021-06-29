@@ -4,7 +4,7 @@ $(function() {
 		$("#message").html("Enregistrer !");
 		let titreLivre = $("#titreLivre").val();
 		let dateEmprunt= $("#dateEmprunt").val();
-                let nomEmprunteur=$("#dateEmprunt").val();
+                let nomEmprunteur=$("#nomEmprunt").val();
 		
 //		Envoyer les données vers le serveur à l'addresse /page2 et mettre les données dans  la requête
 		$.ajax({
@@ -14,7 +14,7 @@ $(function() {
 			data:JSON.stringify({
 				"titreLivre":titreLivre,
 				"dateEmprunt":dateEmprunt,
-				"nomEmprunteur":nomEmprunteur,
+				"nomEmprunteur":nomEmprunteur
                                 
 			})
 		}).done(function(retour){ // 200
