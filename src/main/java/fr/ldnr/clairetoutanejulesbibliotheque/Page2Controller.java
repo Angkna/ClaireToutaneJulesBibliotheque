@@ -36,15 +36,12 @@ public class Page2Controller {
 
     @RequestMapping(value = "/envoi", method = RequestMethod.POST)
     public String envoi(@RequestBody Emprunt emprunt) {
-        logger.info("" + emprunt);
+        logger.info("" + emprunt.getNomUser() + " " + emprunt.getDateEmprunt());
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
         session.save(emprunt);
         tx.commit();
         session.close();
-
         return "Reçu !";
-
     }
-
 }

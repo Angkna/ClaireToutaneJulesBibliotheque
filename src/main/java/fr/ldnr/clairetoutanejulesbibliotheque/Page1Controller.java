@@ -1,7 +1,6 @@
 /**
  * @author Claire
- * @version 28/June/2021 p.m.
- * Controller REST pour la mise en base de donnée
+ * @version 28/June/2021 p.m. Controller REST pour la mise en base de donnée
  * d'objet livre via la page index.html
  */
 package fr.ldnr.clairetoutanejulesbibliotheque;
@@ -25,7 +24,7 @@ public class Page1Controller {
     public static final Logger logger = LoggerFactory.getLogger(Page1Controller.class);
 
     public SessionFactory sessionFactory;
-    
+
     // Permet de créer une SessionFactory avec les configurations souhaitées automatiquement
     @Autowired
     public void setSessionFactory(SessionFactory sessionFactory) {
