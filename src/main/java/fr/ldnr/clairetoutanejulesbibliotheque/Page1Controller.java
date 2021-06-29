@@ -23,19 +23,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @RestController
 @RequestMapping("/index")
 public class Page1Controller {
-  public static final Logger logger = LoggerFactory.getLogger(Page1Controller.class);
+
+    public static final Logger logger = LoggerFactory.getLogger(Page1Controller.class);
     
-   public SessionFactory sessionFactory;
+    public SessionFactory sessionFactory;
+        // Permet de créer une SessionFactory avec les configurations souhaitées automatiquement
+	@Autowired
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-   
-   @RequestMapping(value="/envoi", method=RequestMethod.POST)
+    
+    @RequestMapping(value="/envoi", method=RequestMethod.POST)
+
 	public String envoi(@RequestBody Livre livre) {
 		logger.info("" + livre);
 		Session session = sessionFactory.openSession();
@@ -43,7 +46,9 @@ public class Page1Controller {
 		session.save(livre);
 		tx.commit();
 		session.close();
-		return "ok";
+
+		return "Reçu !";
+
 	}
 
 }
