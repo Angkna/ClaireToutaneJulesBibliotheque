@@ -5,9 +5,16 @@
  */
 package fr.ldnr.clairetoutanejulesbibliotheque;
 
+import static fr.ldnr.clairetoutanejulesbibliotheque.Page1Controller.logger;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -15,12 +22,29 @@ import org.springframework.web.bind.annotation.RestController;
  * @author stag
  */
 @RestController
+@RequestMapping("/page2")
 public class Page2Controller {
     //on ajoute un logger pour savoir si le serveur fonctionne
 	public static final Logger logger = LoggerFactory.getLogger( Page2Controller.class);
-	@RequestMapping("/health")
-	public String health() {
-		return "ok";
+	
+         public SessionFactory sessionFactory;
+        // Permet de créer une SessionFactory avec les configurations souhaitées automatiquement
+	@Autowired
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+        @RequestMapping(value="/envoi", method=RequestMethod.POST)
+
+	public String envoi(@RequestBody Emprunt emprunt) {
+		logger.info("" + emprunt);
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.save(emprunt);
+		tx.commit();
+		session.close();
+
+		return "Reçu !";
+
 	}
     
 }
