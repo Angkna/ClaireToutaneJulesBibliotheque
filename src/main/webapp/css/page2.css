@@ -29,7 +29,8 @@ section {
 
  input {
     margin: 10px;
-    width : 80%;
+    width: 80%;
+    height: 20px;
 }
 
 label {
