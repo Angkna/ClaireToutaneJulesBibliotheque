@@ -29,7 +29,7 @@ public class HibernateConfig {
         //<property name="hibernate.show_sql">true</property>
         options.put("hibernate.show_sql", "true");
         //<property name="hibernate.hbm2ddl.auto">create</property>
-        options.put("hibernate.hbm2ddl.auto", "create");
+        options.put("hibernate.hbm2ddl.auto", "update");
 
         SessionFactory factory = new org.hibernate.cfg.Configuration()
                 .addProperties(options)
