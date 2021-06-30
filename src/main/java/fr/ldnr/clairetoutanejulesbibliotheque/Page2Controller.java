@@ -5,6 +5,7 @@
  */
 package fr.ldnr.clairetoutanejulesbibliotheque;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -65,7 +66,8 @@ public class Page2Controller {
         session.close();
         return message;
     }
-
+    
+    //methode pour l'affichage de la liste des livres recherchés
     @RequestMapping(value = "/{titre}", method = RequestMethod.GET)
     public List<Livre> lire(@PathVariable String titre)    {
         logger.info("Recherche livres avec comme titre : " + titre);
@@ -74,7 +76,15 @@ public class Page2Controller {
         @SuppressWarnings("unchecked")
         List<Livre> livres = ses.createQuery(insHQL).setParameter("t", titre + "%").getResultList();
         ses.close();
-        return livres;
+        if (livres != null){
+            return livres;
+        }else return new ArrayList<>();
     }
-
+    //methode si le champ est vide
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public List<Livre> lire()    {
+        logger.info("Recherche livres avec comme titre : ");
+        return new ArrayList<>();
+    }
+    
 }
