@@ -13,21 +13,34 @@
     </head>
     <body>
         <button id="ajout" onclick="window.location.href = '/index.html';">Ajouter un livre</button>
-        
-        <h1>Gestion des emprunts</h1>
-        
-        <section id="section1">
-            <h2>Création d'un emprunt</h2>
-            <label for="titreLivre"> Titre du livre : </label> 
-            <label for="id">Id : </label>
-            <label for="nomEmprunteur">Nom de l'emprunteur : </label>
-            <label for="dateEmprunt">Date d'emprunt : </label><br>
 
-            <input type="text" id="titreLivre">
-            <input type="number" id="id" min="0">
-            <input type="text" id="nomEmprunteur">
-            <input type="date" id="dateEmprunt">
-            <button id="enregistrer">Enregistrer</button><br>
+        <h1>Gestion des emprunts</h1>
+
+        <section>
+            <h2>Création d'un emprunt</h2><br>
+            <div class="flex-container">
+                <div>
+                    <label for="titreLivre"> Titre du livre : </label> 
+                    <input type="text" id="titreLivre">
+                </div>
+
+                <div>
+                    <label for="id">Id : </label>
+                    <input type="number" id="id" min="0">
+                </div>
+                <div>
+                    <label for="nomEmprunteur">Nom de l'emprunteur : </label>
+                    <input type="text" id="nomEmprunteur">
+                </div>
+                <div>
+                    <label for="dateEmprunt">Date d'emprunt : </label>
+                    <input type="date" id="dateEmprunt">
+                </div>
+                <div>
+                    <label for="enregistrerEmprunt"></label><br>
+                    <button id="enregistrerEmprunt">Enregistrer</button>
+                </div>
+            </div>
             <p id="message"></p>
             <table id="livres">
                 <thead>
@@ -53,11 +66,21 @@
 
         <section >
             <h2>Ajout de la date de retour d'un livre</h2>
-            <label for="dateDeRendu">Date de rendu : </label><br> 
-            <input type="date" id="dateDeRendu"><br>
-            <label for="IdDeLEmprunt">Id de l'emprunt : </label><br> 
-            <input type="text" id="IdDeLEmprunt"><br>
-            <button id="ajout">enregistrer</button>
+
+            <div class="flex-container">
+                <div>
+                    <label for="dateDeRendu">Date de rendu : </label>
+                    <input type="date" id="dateDeRendu"><br>
+                </div>
+                <div>
+                    <label for="IdDeLEmprunt">Id de l'emprunt : </label>
+                    <input type="text" id="IdDeLEmprunt"><br>
+                </div>
+                <div>
+                    <label for="enregistrerDateRendu"></label><br>
+                    <button id="enregistrerDateRendu">enregistrer</button>
+                </div>
+            </div>
 
         </section>
     </body>
