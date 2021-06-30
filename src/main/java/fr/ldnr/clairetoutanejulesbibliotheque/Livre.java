@@ -28,9 +28,11 @@ public class Livre implements Serializable {
     private String editeur;
     private String nomAuteur;
     private String prenomAuteur;
+    private boolean disponible;
     
     public Livre() {
         id = 0;
+        disponible = true;
     }
 
     public Livre(String titre, int annee, String editeur, String nomAuteur, String prenomAuteur) {
@@ -40,11 +42,21 @@ public class Livre implements Serializable {
         this.editeur = editeur;
         this.nomAuteur = nomAuteur;
         this.prenomAuteur = prenomAuteur;
+        this.disponible = true;
     }
     
     @Override
     public String toString() {
         return id + " " + prenomAuteur + " " + nomAuteur + " - " + titre + " (" + editeur + ", " + annee + ")";
+    }
+    
+    @Column(nullable = false)
+    public boolean getDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
     }
     
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

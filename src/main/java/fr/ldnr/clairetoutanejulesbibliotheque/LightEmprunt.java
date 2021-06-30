@@ -13,17 +13,26 @@ import java.time.LocalDate;
  */
 public class LightEmprunt{
 
+    private int idLivre;
     private String titreLivre;
     private String nomUser;
     private LocalDate dateEmprunt;
 //    private LocalDate dateRendu;
 
+    public int getIdLivre() {
+        return idLivre;
+    }
+
+    public void setIdLivre(int idLivre) {
+        this.idLivre = idLivre;
+    }
+    
     public String getTitreLivre() {
         return titreLivre;
     }
 
-    public void setTitreLivre(String titrelivre) {
-        this.titreLivre = titrelivre;
+    public void setTitreLivre(String titreLivre) {
+        this.titreLivre = titreLivre;
     }
     
     public String getNomUser() {
