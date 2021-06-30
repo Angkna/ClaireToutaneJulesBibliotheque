@@ -40,24 +40,26 @@ public class Page2Controller {
     @RequestMapping(value = "/envoi", method = RequestMethod.POST)
     public String envoi(@RequestBody LightEmprunt lightEmprunt) {
         String message;
-        logger.info("titre " + lightEmprunt.getTitreLivre() + " " +lightEmprunt.getNomUser() + " " + lightEmprunt.getDateEmprunt() );
+        logger.info("détail emprunt : " + lightEmprunt.getIdLivre() + " " +lightEmprunt.getNomUser() + " " + lightEmprunt.getDateEmprunt() );
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
         try {
-            String insHQL = "from Livre where titre = :t";
-            @SuppressWarnings("unchecked")
-            List<Livre> livres = session.createQuery(insHQL).setParameter("t", lightEmprunt.getTitreLivre()).getResultList();
+            Livre l = session.load(Livre.class, lightEmprunt.getIdLivre());
+//            String insHQL = "from Livre where id = :id";
+//            @SuppressWarnings("unchecked")
+//            List<Livre> livres = session.createQuery(insHQL).setParameter("id", lightEmprunt.getIdLivre()).getResultList();
             Emprunt emprunt = new Emprunt();
             emprunt.setDateEmprunt(lightEmprunt.getDateEmprunt());
             emprunt.setNomUser(lightEmprunt.getNomUser());
-            emprunt.setLivre(livres.get(0));
+//            emprunt.setLivre(livres.get(0));
+            emprunt.setLivre(l);
             session.save(emprunt);
             tx.commit();
-            logger.info("emprunt crée du livre : " + emprunt.getLivre().toString() );
+            logger.info("emprunt crée du livre : " + emprunt.getLivre() );
             message = "Reçu !";
-        } catch (Exception e) {
-            tx.rollback();
+        } catch (Exception e) {            
             logger.warn("Rollback!" + e.getMessage());
+            tx.rollback();
             message = "Fail !";
         }
         session.close();

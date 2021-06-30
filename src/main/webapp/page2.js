@@ -2,7 +2,8 @@ $(function () {
     // sélectionner l'élément d'id "envoyer"
     $("#enregistrer").on('click', function () {
         $("#message").html("Enregistrer !");
-        let titreLivre = $("#titreLivre").val();
+        let idLivre = $("#idLivre").val();
+        //let titreLivre = $("#titreLivre").val();
         let dateEmprunt = $("#dateEmprunt").val();
         let nomEmprunteur = $("#nomEmprunteur").val();
 //	Envoyer les données vers le serveur à l'addresse /page2 et mettre les données dans  la requête
@@ -11,7 +12,8 @@ $(function () {
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify({
-                "titreLivre": titreLivre,
+                "idLivre": idLivre,
+                //"titreLivre": titreLivre,
                 "dateEmprunt": dateEmprunt,
                 "nomUser": nomEmprunteur
             })
@@ -30,7 +32,8 @@ $(function () {
             type: "GET",
             dataType: "json"
         }).done(function (listRetour) { //200
-            $("#message").html("Trouvé ! Livres ayant le titre de " + titre + " (" + listRetour.length + ").");
+            $("#message").html("Il y a " + listRetour.length +
+                    " livres dans la bibliothèque ayant un titre commençant par " + titre + ".");
             let lignes = "";
             let num = 0;
             for (const livre of listRetour) {
@@ -40,6 +43,7 @@ $(function () {
                         "<td>" + livre.titre + "</td>" +
                         "<td>" + livre.nomAuteur + "</td>" +
                         "<td>" + livre.annee + "</td>" +
+                        "<td>" + livre.disponible + "</td>" +
                         "</tr>";
             }
             $("#livres tbody").html(lignes);
