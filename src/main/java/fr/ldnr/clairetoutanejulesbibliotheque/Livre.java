@@ -47,7 +47,8 @@ public class Livre implements Serializable {
     
     @Override
     public String toString() {
-        return id + " " + prenomAuteur + " " + nomAuteur + " - " + titre + " (" + editeur + ", " + annee + ")";
+        return id + " " + prenomAuteur + " " + nomAuteur + " - " + titre 
+                + " (" + editeur + ", " + annee + "). Disponible : " + disponible + ".";
     }
     
     @Column(nullable = false)

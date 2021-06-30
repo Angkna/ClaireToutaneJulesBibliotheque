@@ -32,7 +32,8 @@ $(function () {
             type: "GET",
             dataType: "json"
         }).done(function (listRetour) { //200
-            $("#message").html("Trouvé ! Livres ayant le titre de " + titre + " (" + listRetour.length + ").");
+            $("#message").html("Il y a " + listRetour.length +
+                    " livres dans la bibliothèque ayant un titre commençant par " + titre + ".");
             let lignes = "";
             let num = 0;
             for (const livre of listRetour) {
