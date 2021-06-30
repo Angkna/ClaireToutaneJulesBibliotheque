@@ -9,12 +9,12 @@
                 integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         crossorigin="anonymous"></script>
         <script src="page2.js" defer></script>
-        <link rel="stylesheet" type="text/css" href="css/index.css"/>
+        <link rel="stylesheet" type="text/css" href="css/page2.css"/>
     </head>
     <body>
         <h1>Gestion des emprunts</h1>
 
-        <section>
+        <section id="section1">
             <h2>Création d'un emprunt</h2>
             <label for="titreLivre"> Titre du livre : </label><br> 
             <input type="text" id="titreLivre"><br>
@@ -22,7 +22,7 @@
             <input type="text" id="nomEmprunteur"><br>
             <label for="dateEmprunt">Date d'emprunt : </label><br> 
             <input type="date" id="dateEmprunt"><br>
-            <button id="enregistrer">enregistrer</button>
+            <button id="enregistrer">Enregistrer</button>
             <button id="ajout" onclick="window.location.href = '/index.html';">Ajouter un livre</button>
             <p id="message"></p>
             <table id="livres">
