@@ -12,18 +12,22 @@
         <link rel="stylesheet" type="text/css" href="css/page2.css"/>
     </head>
     <body>
+        <button id="ajout" onclick="window.location.href = '/index.html';">Ajouter un livre</button>
+        
         <h1>Gestion des emprunts</h1>
-
+        
         <section id="section1">
             <h2>Création d'un emprunt</h2>
-            <label for="titreLivre"> Titre du livre : </label><br> 
-            <input type="text" id="titreLivre"><br>
-            <label for="nomEmprunteur">Nom de l'emprunteur : </label><br> 
-            <input type="text" id="nomEmprunteur"><br>
-            <label for="dateEmprunt">Date d'emprunt : </label><br> 
-            <input type="date" id="dateEmprunt"><br>
-            <button id="enregistrer">Enregistrer</button>
-            <button id="ajout" onclick="window.location.href = '/index.html';">Ajouter un livre</button>
+            <label for="titreLivre"> Titre du livre : </label> 
+            <label for="id">Id : </label>
+            <label for="nomEmprunteur">Nom de l'emprunteur : </label>
+            <label for="dateEmprunt">Date d'emprunt : </label><br>
+
+            <input type="text" id="titreLivre">
+            <input type="number" id="id" min="0">
+            <input type="text" id="nomEmprunteur">
+            <input type="date" id="dateEmprunt">
+            <button id="enregistrer">Enregistrer</button><br>
             <p id="message"></p>
             <table id="livres">
                 <thead>
@@ -32,6 +36,7 @@
                         <th scope="col">Titre</th>
                         <th scope="col">Auteur</th>
                         <th scope="col">Année</th>
+                        <th scope="col">Disponible</th>
                     </tr>
                 </thead>
                 <tbody>
