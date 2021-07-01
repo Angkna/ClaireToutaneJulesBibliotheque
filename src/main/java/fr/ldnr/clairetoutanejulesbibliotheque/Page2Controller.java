@@ -87,12 +87,12 @@ public class Page2Controller {
         return new ArrayList<>();
     }
     
-    //méthode pour l'affichage de la liste des emprunts dont le livre n'a pas encore été rendu
-    @RequestMapping(value = "/page2", method = RequestMethod.GET)
+    //méthode pour l'affichage de la liste des emprunts dont le livre n'a pas encore été rendu, càd en cours
+    @RequestMapping(value = "/emprunts", method = RequestMethod.GET)
     public List<Emprunt> lireEmprunt() {
-        logger.info("Emprunts dont le livre n'a pas encore été rendu");
+        logger.info("Emprunts en cours");
         Session ses = sessionFactory.openSession();
-        String listeEmpruntsHQL = "from Emprunt where dateRendu is not null";
+        String listeEmpruntsHQL = "from Emprunt where dateRendu is null";
         @SuppressWarnings("unchecked")
         List<Emprunt> emprunts = ses.createQuery(listeEmpruntsHQL).list();
         ses.close();

@@ -56,7 +56,7 @@ $(function () {
     // Affichage de la liste des emprunts
     $(document).on("pageshow",function(){
         $.ajax({
-            url: "/page2/",
+            url: "/page2/emprunts",
             type: "GET",
             dataType: "json"
         }).done(function (listeEmprunts) { //200
