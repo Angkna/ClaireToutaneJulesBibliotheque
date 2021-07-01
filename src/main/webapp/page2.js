@@ -58,6 +58,28 @@ $(function () {
         }
     });
     
+    // Affichage de la liste des emprunts
+    $(document).on("pageshow",function(){
+        $.ajax({
+            url: "/page2/",
+            type: "GET",
+            dataType: "json"
+        }).done(function (listeEmprunts) { //200
+                let lignes = "";
+                for (const emprunt of listeEmprunts) {
+                    lignes += "<tr>" +
+                            "<th scope='row'>" + emprunt.id + "</th>" +
+                            "<td>" + emprunt.nomUser + "</td>" +
+                            "<td>" + emprunt.dateEmprunt + "</td>" +
+                            "</tr>";
+                $("#listeEmprunts tbody").html(lignes);
+            }
+        }).fail(function () { //400, 501...
+            $("#message").html("Serveur non disponible !");
+        });
+
+    });
+    
     //edition de la date rendu de l'emprunt
     $("#enregistrerDateRendu").on('click', function () {
         $("#message2").html("Modification en cours");

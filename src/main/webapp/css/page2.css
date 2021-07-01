@@ -51,7 +51,16 @@ label {
     margin: 10px;
 }
 
+table {
+  width: 100%;
+}
+
 th {
-    display: flex;
-    justify-content: space-around;
+  height: 70px;
+}
+#livre {
+  width: 100%;
+}
+h {
+  height: 80px;
 }
