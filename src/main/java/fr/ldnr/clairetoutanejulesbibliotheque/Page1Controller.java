@@ -24,28 +24,36 @@ public class Page1Controller {
     public static final Logger logger = LoggerFactory.getLogger(Page1Controller.class);
 
     public SessionFactory sessionFactory;
-
     // Permet de créer une SessionFactory avec les configurations souhaitées automatiquement
     @Autowired
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
-
+    
+    //methode permettant l'ajout d'un livre en base de données
     @RequestMapping(value = "/envoi", method = RequestMethod.POST)
     public String envoi(@RequestBody Livre livre) {
+        String message;
         logger.info("" + livre);
-        try (Session session = sessionFactory.openSession()) {
-            Transaction tx = session.beginTransaction();
-            try {
-                session.save(livre);
-                tx.commit();
-                session.close();
-                return "Reçu !";
-            } catch (HibernateException e) {
-                tx.rollback();
-                logger.warn("ROLLBACK : " + e.getMessage());
+        if (livre.getAnnee() <= 0 
+                || livre.getTitre().equals("") || livre.getEditeur().equals("") 
+                || livre.getNomAuteur().equals("") || livre.getPrenomAuteur().equals("")){
+            message = "Vous n'avez pas remplis tout les champs correctement !";
+        } else {
+            try (Session session = sessionFactory.openSession()) {
+                Transaction tx = session.beginTransaction();
+                try {
+                    session.save(livre);
+                    tx.commit();
+                    session.close();
+                    message = "Livre ajouté a la base de données avec succès !";
+                } catch (HibernateException e) {
+                    tx.rollback();
+                    logger.warn("ROLLBACK : " + e.getMessage());
+                    message = "Erreur coté serveur, contactez le support.";
+                }
             }
         }
-        return "Erreur ?";
+        return message;
     }
 }

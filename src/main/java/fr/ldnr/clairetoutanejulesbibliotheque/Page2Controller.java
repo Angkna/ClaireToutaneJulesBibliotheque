@@ -32,7 +32,6 @@ public class Page2Controller {
     public static final Logger logger = LoggerFactory.getLogger(Page2Controller.class);
 
     public SessionFactory sessionFactory;
-
     // Permet de créer une SessionFactory avec les configurations souhaitées automatiquement
     @Autowired
     public void setSessionFactory(SessionFactory sessionFactory) {
@@ -105,7 +104,7 @@ public class Page2Controller {
                 logger.info("emprunt modifié, livre rendu le : " + emprunt.getDateRendu());
                 message = "Date de rendu enregistée !";
             } else {
-                message = "Attention : date de rendu incorrecte !";
+                message = "Attention : la date de rendu doit être postérieur à la date d'emprunt !";
             }
         } catch (HibernateException e) {
             logger.warn("Rollback!" + e.getMessage());
