@@ -7,6 +7,7 @@ package fr.ldnr.clairetoutanejulesbibliotheque;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -37,47 +38,54 @@ public class Page2Controller {
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
-    
+
     //Methode pour crée un emprunt dans la bdd
     @RequestMapping(value = "/envoi", method = RequestMethod.POST)
     public String envoi(@RequestBody LightEmprunt lightEmprunt) {
         String message;
-        logger.info("détail emprunt : " + lightEmprunt) ;
+        logger.info("détail emprunt : " + lightEmprunt);
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
         try {
-            Livre l = session.load(Livre.class, lightEmprunt.getIdLivre());
-            Emprunt emprunt = new Emprunt();
-            emprunt.setDateEmprunt(lightEmprunt.getDateEmprunt());
-            emprunt.setNomUser(lightEmprunt.getNomUser());
-            emprunt.setLivre(l);
-            session.save(emprunt);
-            tx.commit();
-            logger.info("emprunt crée du livre : " + emprunt.getLivre() );
-            message = "Reçu !";
-        } catch (Exception e) {            
-            logger.warn("Rollback!" + e.getMessage());
+            Livre l = session.get(Livre.class, lightEmprunt.getIdLivre());
+            if (l == null) {
+                message = "Pas de livre avec cet ID existe en base de donnée !";
+                logger.info("Pas de livre avec cet Id n'exsite en BDD");
+            } else if (l.getDisponible()) {
+                Emprunt emprunt = new Emprunt();
+                emprunt.setDateEmprunt(lightEmprunt.getDateEmprunt());
+                emprunt.setNomUser(lightEmprunt.getNomUser());
+                emprunt.setLivre(l);
+                l.setDisponible(false);
+                session.save(emprunt);
+                tx.commit();
+                logger.info("emprunt crée du livre : " + emprunt.getLivre());
+                message = "Emprunt crée avec succes !";
+            } else {
+                logger.info("livre non disponible : impossible de crée l'emprunt");
+                message = "Ce livre n'est pas dispponible !";
+            }
+        } catch (HibernateException e) {
+            logger.warn("Rollback! " + e.getMessage());
             tx.rollback();
-            message = "Fail !";
+            message = "Erreur interne ! Contactez le support pour plus d'info.";
         }
         session.close();
         return message;
     }
-    
+
     //méthode pour l'affichage de la liste des livres recherchés
     @RequestMapping(value = "/{titre}", method = RequestMethod.GET)
-    public List<Livre> lire(@PathVariable String titre)    {
-        logger.info("Recherche livres avec comme titre : " + titre);
+    public List<Livre> lire(@PathVariable String titre) {
+        logger.info("Recherche des livres avec leurs titres commançant par : " + titre);
         Session ses = sessionFactory.openSession();
         String insHQL = "from Livre where titre like :t";
         @SuppressWarnings("unchecked")
         List<Livre> livres = ses.createQuery(insHQL).setParameter("t", titre + "%").getResultList();
         ses.close();
-        if (livres != null){
-            return livres;
-        }else return new ArrayList<>();
+        return livres;
     }
-    
+
     //Methode pour edit un emprunt
     @RequestMapping(value = "/envoi", method = RequestMethod.PUT)
     public String editEmprunt(@RequestBody LightEmprunt lightEmprunt) {
@@ -86,13 +94,20 @@ public class Page2Controller {
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
         try {
-            Emprunt emprunt = session.load(Emprunt.class, lightEmprunt.getIdEmprunt());
-            emprunt.setDateRendu(lightEmprunt.getDateRendu());
-            session.save(emprunt);
-            tx.commit();
-            logger.info("emprunt modifié, livre rendu le : " + emprunt.getDateRendu());
-            message = "Modification réussi !";
-        } catch (Exception e) {            
+            Emprunt emprunt = session.get(Emprunt.class, lightEmprunt.getIdEmprunt());
+            if (emprunt == null) {
+                message = "Cet id d'emprunt n'existe pas en base de donnée";
+            } else if (emprunt.getDateEmprunt().isBefore(lightEmprunt.getDateRendu()) ) {
+                emprunt.setDateRendu(lightEmprunt.getDateRendu());
+                emprunt.getLivre().setDisponible(true);
+                session.save(emprunt);
+                tx.commit();
+                logger.info("emprunt modifié, livre rendu le : " + emprunt.getDateRendu());
+                message = "Date de rendu enregistée !";
+            } else {
+                message = "Attention : date de rendu incorrecte !";
+            }
+        } catch (HibernateException e) {
             logger.warn("Rollback!" + e.getMessage());
             tx.rollback();
             message = "Fail !";
@@ -110,7 +125,7 @@ public class Page2Controller {
         @SuppressWarnings("unchecked")
         List<Emprunt> emprunts = ses.createQuery(listeEmpruntsHQL).list();
         ses.close();
-        if (emprunts != null){
+        if (emprunts != null) {
             return emprunts;
         } else {
             return new ArrayList<>();
