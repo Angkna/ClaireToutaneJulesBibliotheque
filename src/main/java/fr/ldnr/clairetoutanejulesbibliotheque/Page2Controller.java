@@ -46,15 +46,15 @@ public class Page2Controller {
         logger.info("détail emprunt : " + lightEmprunt);
         if (lightEmprunt.getIdLivre() <= 0
                 || lightEmprunt.getNomUser().equals("") || lightEmprunt.getDateEmprunt() == null) {
-            message = "Vous n'avez pas remplis tout les champs correctement !";
+            message = "Vous n'avez pas rempli tous les champs correctement !";
         } else {
             Session session = sessionFactory.openSession();
             Transaction tx = session.beginTransaction();
             try {
                 Livre l = session.get(Livre.class, lightEmprunt.getIdLivre());
                 if (l == null) {
-                    message = "Pas de livre avec cet ID existe en base de donnée !";
-                    logger.info("Pas de livre avec cet Id n'exsite en BDD");
+                    message = "Pas de livre avec cet ID existe en base de donn&eacute;e !";
+                    logger.info("Pas de livre avec cet ID n'exsite en BDD");
                 } else if (l.getDisponible()) {
                     Emprunt emprunt = new Emprunt();
                     emprunt.setDateEmprunt(lightEmprunt.getDateEmprunt());
@@ -64,15 +64,15 @@ public class Page2Controller {
                     session.save(emprunt);
                     tx.commit();
                     logger.info("emprunt crée du livre : " + emprunt.getLivre());
-                    message = "Emprunt crée avec succes !";
+                    message = "Emprunt cr&eacute;&eacute; avec succ&egrave;s !";
                 } else {
                     logger.info("livre non disponible : impossible de crée l'emprunt");
-                    message = "Ce livre n'est pas dispponible !";
+                    message = "Ce livre n'est pas disponible !";
                 }
             } catch (HibernateException e) {
                 logger.warn("Rollback! " + e.getMessage());
                 tx.rollback();
-                message = "Erreur interne ! Contactez le support pour plus d'info.";
+                message = "Erreur interne ! Contactez le support pour plus d'informations.";
             }
             session.close();
         }
@@ -82,7 +82,7 @@ public class Page2Controller {
     //méthode pour l'affichage de la liste des livres recherchés
     @RequestMapping(value = "/{titre}", method = RequestMethod.GET)
     public List<Livre> lire(@PathVariable String titre) {
-        logger.info("Recherche des livres avec leurs titres commançant par : " + titre);
+        logger.info("Recherche des livres avec leurs titres commençant par : " + titre);
         Session ses = sessionFactory.openSession();
         String insHQL = "from Livre where titre like :t";
         @SuppressWarnings("unchecked")
@@ -104,18 +104,18 @@ public class Page2Controller {
             try {
                 Emprunt emprunt = session.get(Emprunt.class, lightEmprunt.getIdEmprunt());
                 if (emprunt == null) {
-                    message = "Cet id d'emprunt n'existe pas en base de donnée";
+                    message = "Cet id d'emprunt n'existe pas en base de donn&eacute;es";
                 } else if (emprunt.getDateRendu() != null) {
-                    message = "Cet emprunt est déja archivé (car a déja une date de rendu)";
+                    message = "Cet emprunt est d&eacute;ja archiv&eacute; (car a d&eacute;j&agrave; une date de rendu)";
                 } else if (emprunt.getDateEmprunt().isAfter(lightEmprunt.getDateRendu())) {
-                    message = "Attention : la date de rendu doit être postérieur à la date d'emprunt !";
+                    message = "Attention : la date de rendu doit &ecirc;tre postérieure &agrave; la date d'emprunt !";
                 } else {
                     emprunt.setDateRendu(lightEmprunt.getDateRendu());
                     emprunt.getLivre().setDisponible(true);
                     session.save(emprunt);
                     tx.commit();
                     logger.info("emprunt modifié, livre rendu le : " + emprunt.getDateRendu());
-                    message = "Date de rendu enregistée !";
+                    message = "Date de rendu enregistr&eacute;e !";
                 }
             } catch (HibernateException e) {
                 logger.warn("Rollback!" + e.getMessage());
