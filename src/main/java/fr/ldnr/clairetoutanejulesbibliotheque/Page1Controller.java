@@ -38,7 +38,7 @@ public class Page1Controller {
         if (livre.getAnnee() <= 0 
                 || livre.getTitre().equals("") || livre.getEditeur().equals("") 
                 || livre.getNomAuteur().equals("") || livre.getPrenomAuteur().equals("")){
-            message = "Vous n'avez pas remplis tout les champs correctement !";
+            message = "Vous n'avez pas rempli tous les champs correctement !";
         } else {
             try (Session session = sessionFactory.openSession()) {
                 Transaction tx = session.beginTransaction();
@@ -46,11 +46,11 @@ public class Page1Controller {
                     session.save(livre);
                     tx.commit();
                     session.close();
-                    message = "Livre ajouté a la base de données avec succès !";
+                    message = "Livre ajout&eacute; &agrave; la base de donn&eacute;es avec succ&egrave;s !";
                 } catch (HibernateException e) {
                     tx.rollback();
                     logger.warn("ROLLBACK : " + e.getMessage());
-                    message = "Erreur coté serveur, contactez le support.";
+                    message = "Erreur cot&eacute; serveur, contactez le support.";
                 }
             }
         }

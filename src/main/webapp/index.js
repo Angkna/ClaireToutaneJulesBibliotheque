@@ -30,7 +30,7 @@ $(function () {
         }).done(function (retour) { // 200
             $("#message").html(retour);
         }).fail(function () { // 400, 501..
-            $("#message").html("Echec !");
+            $("#message").html("&Eacute;chec !");
         });
     });
 });

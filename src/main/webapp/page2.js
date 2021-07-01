@@ -18,7 +18,7 @@ $(function () {
             $("#message").html(retour);
             afficherEmprunts();
         }).fail(function () { // 400, 501..
-            $("#message").html("Echec de connection avec le backend !" + idLivre);
+            $("#message").html("&Eacute;chec de connection avec le back-end !" + idLivre);
         });
 
     });
@@ -36,10 +36,11 @@ $(function () {
                 dataType: "json"
             }).done(function (listRetour) { //200
                 if (listRetour.length === 0) {
-                    $("#message").html("Il n'y a pas de livres dans la bibliothèque ayant un titre commençant par ce titre.");
+                    $("#message").html("Il n'y a pas de livre dans la biblioth&egrave;que ayant un titre commen&ccedil;ant par ce titre.");
+                    $('#livres tbody tr').remove();
                 } else {
                     $("#message").html("Il y a " + listRetour.length +
-                            " livres dans la bibliothèque ayant un titre commençant par " + titre + ".");
+                            " livre(s) dans la biblioth&egrave;que ayant un titre commen&ccedil;ant par " + titre + ".");
                     let lignes = "";
                     for (const livre of listRetour) {
                         lignes += "<tr>" +
@@ -99,7 +100,7 @@ $(function () {
             $("#message2").html(retour);
             afficherEmprunts();
         }).fail(function () { // 400, 501..
-            $("#message2").html("Echec !");
+            $("#message2").html("&Eacute;chec !");
         });
 
     });
@@ -120,6 +121,9 @@ var afficherEmprunts = function () {
                     "<td>" + emprunt.dateEmprunt + "</td>" +
                     "</tr>";
             $("#listeEmprunts tbody").html(lignes);
+        }
+        if (listeEmprunts.length === 0) {
+            $('#listeEmprunts tbody tr').remove();
         }
     }).fail(function () { //400, 501...
         $("#message").html("Serveur non disponible !");
