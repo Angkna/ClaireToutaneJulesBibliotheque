@@ -90,7 +90,7 @@ public class Page2Controller {
         ses.close();
         return livres;
     }
-
+    
     //Methode pour edit un emprunt
     @RequestMapping(value = "/envoi", method = RequestMethod.PUT)
     public String editEmprunt(@RequestBody LightEmprunt lightEmprunt) {

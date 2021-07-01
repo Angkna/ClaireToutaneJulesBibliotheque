@@ -28,7 +28,7 @@ $(function () {
         let titre = $("#titreLivre").val();
         if (!titre) {
             $("#message").html("Entrez un titre !");
-            $("#livres tbody").html();
+            $("#livres tbody tr").remove();
         } else {
             $.ajax({
                 url: "/page2/" + titre,
@@ -48,7 +48,7 @@ $(function () {
                                 "<td>" + livre.titre + "</td>" +
                                 "<td>" + livre.nomAuteur + "</td>" +
                                 "<td>" + livre.annee + "</td>" +
-                                "<td>" + livre.disponible + "</td>" +
+                                "<td>" + (livre.disponible ? 'oui' : 'non') + "</td>" +
                                 "</tr>";
                     }
                     $("#livres tbody").html(lignes);
