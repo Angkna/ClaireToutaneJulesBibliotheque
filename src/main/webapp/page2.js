@@ -20,7 +20,7 @@ $(function () {
         }).fail(function () { // 400, 501..
             $("#message").html("Echec de connection avec le backend !" + idLivre);
         });
-
+        
     });
 
     //Génération de la liste des Livres en BDD :
