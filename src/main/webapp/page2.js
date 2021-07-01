@@ -97,6 +97,7 @@ $(function () {
             })
         }).done(function (retour) { // 200
             $("#message2").html(retour);
+            afficherEmprunts();
         }).fail(function () { // 400, 501..
             $("#message2").html("Echec !");
         });
@@ -114,6 +115,7 @@ var afficherEmprunts = function () {
         for (const emprunt of listeEmprunts) {
             lignes += "<tr>" +
                     "<td>" + emprunt.id + "</td>" +
+                    "<td>" + emprunt.livre.titre + "</td>" +
                     "<td>" + emprunt.nomUser + "</td>" +
                     "<td>" + emprunt.dateEmprunt + "</td>" +
                     "</tr>";
