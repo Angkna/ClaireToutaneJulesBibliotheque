@@ -46,7 +46,7 @@ public class Page2Controller {
         logger.info("détail emprunt : " + lightEmprunt);
         if (lightEmprunt.getIdLivre() <= 0
                 || lightEmprunt.getNomUser().equals("") || lightEmprunt.getDateEmprunt() == null) {
-            message = "Vous n'avez pas remplis tout les champs correctement !";
+            message = "Vous n'avez pas rempli tous les champs correctement !";
         } else {
             Session session = sessionFactory.openSession();
             Transaction tx = session.beginTransaction();
