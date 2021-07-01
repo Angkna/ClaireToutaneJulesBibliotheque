@@ -63,7 +63,7 @@ public class Emprunt implements Serializable {
         this.nomUser = nomUser;
     }
 
-    @Column
+    @Column(nullable = false)
     public LocalDate getDateEmprunt() {
         return dateEmprunt;
     }

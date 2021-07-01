@@ -20,15 +20,15 @@
             <h2>Ajouter un nouveau livre &agrave; la base de données</h2>
             <br>
             <label for="titre">Titre : </label><br> 
-            <input type="text" id="titre"><br> 
+            <input type="text" id="titre" required><br> 
             <label for="annee">Année : </label><br> 
-            <input type="number" id="annee" min="1"><br> 
+            <input type="number" id="annee" min="1" required><br> 
             <label for="editeur">&Eacute;diteur : </label><br> 
-            <input type="text" id="editeur"><br>
+            <input type="text" id="editeur" required><br>
             <label for="nomA">Nom de l'auteur : </label><br> 
-            <input type="text" id="nomA"><br>
+            <input type="text" id="nomA" required><br>
             <label for="prenomA">Pr&eacute;nom de l'auteur : </label><br> 
-            <input type="text" id="prenomA"><br><br>
+            <input type="text" id="prenomA" required><br><br>
 
             <button id="envoyer">Envoyer</button>
             <button id="emprunt" onclick="window.location.href = '/page2.html';">Créer un emprunt</button>
