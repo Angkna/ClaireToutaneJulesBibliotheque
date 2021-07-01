@@ -67,7 +67,7 @@ public class Page2Controller {
         return message;
     }
     
-    //methode pour l'affichage de la liste des livres recherchés
+    //méthode pour l'affichage de la liste des livres recherchés
     @RequestMapping(value = "/{titre}", method = RequestMethod.GET)
     public List<Livre> lire(@PathVariable String titre)    {
         logger.info("Recherche livres avec comme titre : " + titre);
@@ -80,11 +80,26 @@ public class Page2Controller {
             return livres;
         }else return new ArrayList<>();
     }
-    //methode si le champ est vide
+    //méthode si le champ est vide
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public List<Livre> lire()    {
         logger.info("Recherche livres avec comme titre : ");
         return new ArrayList<>();
     }
     
+    //méthode pour l'affichage de la liste des emprunts dont le livre n'a pas encore été rendu
+    @RequestMapping(value = "/page2", method = RequestMethod.GET)
+    public List<Emprunt> lireEmprunt() {
+        logger.info("Emprunts dont le livre n'a pas encore été rendu");
+        Session ses = sessionFactory.openSession();
+        String listeEmpruntsHQL = "from Emprunt where dateRendu is not null";
+        @SuppressWarnings("unchecked")
+        List<Emprunt> emprunts = ses.createQuery(listeEmpruntsHQL).list();
+        ses.close();
+        if (emprunts != null){
+            return emprunts;
+        } else {
+            return new ArrayList<>();
+        }
+    }
 }
