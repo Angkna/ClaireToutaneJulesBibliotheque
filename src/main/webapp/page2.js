@@ -59,7 +59,7 @@ $(function () {
     });
     
     // Affichage de la liste des emprunts
-    $(document).on("pageshow",function(){
+    $(document).ready(function(){
         $.ajax({
             url: "/page2/emprunts",
             type: "GET",
@@ -68,7 +68,7 @@ $(function () {
                 let lignes = "";
                 for (const emprunt of listeEmprunts) {
                     lignes += "<tr>" +
-                            "<th scope='row'>" + emprunt.id + "</th>" +
+                            "<td>" + emprunt.id + "</td>" +
                             "<td>" + emprunt.nomUser + "</td>" +
                             "<td>" + emprunt.dateEmprunt + "</td>" +
                             "</tr>";
