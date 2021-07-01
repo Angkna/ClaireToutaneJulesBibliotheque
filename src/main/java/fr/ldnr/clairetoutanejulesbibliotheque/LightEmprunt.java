@@ -12,12 +12,18 @@ import java.time.LocalDate;
  *
  */
 public class LightEmprunt{
-
+    
+    private int idEmprunt;
     private int idLivre;
     private String titreLivre;
     private String nomUser;
     private LocalDate dateEmprunt;
-//    private LocalDate dateRendu;
+    private LocalDate dateRendu;
+
+    @Override
+    public String toString() {
+        return "LightEmprunt{" + "idEmprunt=" + idEmprunt + ", idLivre=" + idLivre + ", titreLivre=" + titreLivre + ", nomUser=" + nomUser + ", dateEmprunt=" + dateEmprunt + ", dateRendu=" + dateRendu + '}';
+    }
 
     public int getIdLivre() {
         return idLivre;
@@ -25,6 +31,14 @@ public class LightEmprunt{
 
     public void setIdLivre(int idLivre) {
         this.idLivre = idLivre;
+    }
+    
+    public int getIdEmprunt() {
+        return idEmprunt;
+    }
+
+    public void setIdEmprunt(int idEmprunt) {
+        this.idEmprunt = idEmprunt;
     }
     
     public String getTitreLivre() {
@@ -51,13 +65,13 @@ public class LightEmprunt{
         this.dateEmprunt = dateEmprunt;
     }
 
-//    public LocalDate getDateRendu() {
-//        return dateRendu;
-//    }
-//
-//    public void setDateRendu(LocalDate dateRendu) {
-//        this.dateRendu = dateRendu;
-//    }
+    public LocalDate getDateRendu() {
+        return dateRendu;
+    }
+
+    public void setDateRendu(LocalDate dateRendu) {
+        this.dateRendu = dateRendu;
+    }
 
 
 }
