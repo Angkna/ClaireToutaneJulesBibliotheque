@@ -48,6 +48,7 @@ $(function () {
                                 "<td>" + livre.nomAuteur + "</td>" +
                                 "<td>" + livre.annee + "</td>" +
                                 "<td>" + livre.disponible + "</td>" +
+                                boolean disponible =false? "non":"oui"
                                 "</tr>";
                     }
                     $("#livres tbody").html(lignes);
