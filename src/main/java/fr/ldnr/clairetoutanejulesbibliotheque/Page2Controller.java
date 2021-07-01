@@ -121,7 +121,7 @@ public class Page2Controller {
     public List<Emprunt> lireEmprunt() {
         logger.info("Emprunts en cours");
         Session ses = sessionFactory.openSession();
-        String listeEmpruntsHQL = "from Emprunt where dateRendu is null";
+        String listeEmpruntsHQL = "from Emprunt where dateRendu is null order by dateEmprunt asc";
         @SuppressWarnings("unchecked")
         List<Emprunt> emprunts = ses.createQuery(listeEmpruntsHQL).list();
         ses.close();
