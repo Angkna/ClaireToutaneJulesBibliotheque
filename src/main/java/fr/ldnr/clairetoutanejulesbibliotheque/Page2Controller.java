@@ -37,22 +37,19 @@ public class Page2Controller {
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
-
+    
+    //Methode pour crée un emprunt dans la bdd
     @RequestMapping(value = "/envoi", method = RequestMethod.POST)
     public String envoi(@RequestBody LightEmprunt lightEmprunt) {
         String message;
-        logger.info("détail emprunt : " + lightEmprunt.getIdLivre() + " " +lightEmprunt.getNomUser() + " " + lightEmprunt.getDateEmprunt() );
+        logger.info("détail emprunt : " + lightEmprunt) ;
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
         try {
             Livre l = session.load(Livre.class, lightEmprunt.getIdLivre());
-//            String insHQL = "from Livre where id = :id";
-//            @SuppressWarnings("unchecked")
-//            List<Livre> livres = session.createQuery(insHQL).setParameter("id", lightEmprunt.getIdLivre()).getResultList();
             Emprunt emprunt = new Emprunt();
             emprunt.setDateEmprunt(lightEmprunt.getDateEmprunt());
             emprunt.setNomUser(lightEmprunt.getNomUser());
-//            emprunt.setLivre(livres.get(0));
             emprunt.setLivre(l);
             session.save(emprunt);
             tx.commit();
@@ -80,13 +77,30 @@ public class Page2Controller {
             return livres;
         }else return new ArrayList<>();
     }
-    //méthode si le champ est vide
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public List<Livre> lire()    {
-        logger.info("Recherche livres avec comme titre : ");
-        return new ArrayList<>();
-    }
     
+    //Methode pour edit un emprunt
+    @RequestMapping(value = "/envoi", method = RequestMethod.PUT)
+    public String editEmprunt(@RequestBody LightEmprunt lightEmprunt) {
+        String message;
+        logger.info("détail emprunt a modif : " + lightEmprunt.getIdEmprunt() + " : " + lightEmprunt.getDateRendu());
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        try {
+            Emprunt emprunt = session.load(Emprunt.class, lightEmprunt.getIdEmprunt());
+            emprunt.setDateRendu(lightEmprunt.getDateRendu());
+            session.save(emprunt);
+            tx.commit();
+            logger.info("emprunt modifié, livre rendu le : " + emprunt.getDateRendu());
+            message = "Modification réussi !";
+        } catch (Exception e) {            
+            logger.warn("Rollback!" + e.getMessage());
+            tx.rollback();
+            message = "Fail !";
+        }
+        session.close();
+        return message;
+    }
+
     //méthode pour l'affichage de la liste des emprunts dont le livre n'a pas encore été rendu, càd en cours
     @RequestMapping(value = "/emprunts", method = RequestMethod.GET)
     public List<Emprunt> lireEmprunt() {
