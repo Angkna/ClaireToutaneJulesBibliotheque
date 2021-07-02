@@ -1,12 +1,13 @@
 /* 
- * Fichier javaScript utilisant jQuery
- * permettant le lien entre index.html et le controlleur
- * afin de persister un objet livre
+ * @author ClaireToutaneJules
+ * @version 2/Juillet/2021
+ * 
+ * JavaScript utilisant jQuery liant la page index.html et le controlleur Page1Controller
  */
 
 $(function () {
     /**
-     * Methode pour valider le formulaire d'ajout d'un livre a la bdd
+     * Evenement click bouton pour valider le formulaire d'ajout d'un livre a la bdd
      */
     $("#envoyer").on('click', function () {
         $("#message").html("Envoi !");
@@ -15,8 +16,6 @@ $(function () {
         let editeur = $("#editeur").val();
         let nomAuteur = $("#nomA").val();
         let prenomAuteur = $("#prenomA").val();
-        //Envoyer les données vers le serveur à l'addresse "/envoi" et en 
-        //mettant toutes ces données-là dans le corps de la requête
         $.ajax({
             url: "/index/envoi",
             type: "POST",
@@ -36,7 +35,7 @@ $(function () {
     });
     
     /**
-     * Methode pour remplir la bdd pour test et démo
+     * Evenement bouton pour remplir la bdd pour test et démo
      */
     $("#generate").on('click', function () {
         $.ajax({
