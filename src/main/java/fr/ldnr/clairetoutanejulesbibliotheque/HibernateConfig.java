@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *@Author ClaireToutaneJules
+ *@Version 02/July/2021
+ *Pour la configuration de hibernate
  */
 package fr.ldnr.clairetoutanejulesbibliotheque;
 
@@ -14,7 +14,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class HibernateConfig {
 
-
+    /**
+     * Permet de créer une SessionFactory avec les configurations souhaitées
+     * automatiquement
+     */
     //On recree la configuration en java (a la place du fichier xml : hibernate.cfg.xml)
     @Bean
     public SessionFactory sessionFactory() {
