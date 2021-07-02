@@ -1,6 +1,7 @@
 /**
- *@Author ClaireToutaneJules
+ * @Author ClaireToutaneJules
  * @Version 02/July/2021
+ * Permet de créer des objets emprunts et de les manipuler dans l'application
  */
 package fr.ldnr.clairetoutanejulesbibliotheque;
 
@@ -14,10 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-/**
- * Permet de créer des objets emprunts et de les manipuler dans l'application
- *
- */
 @Entity
 @Table(name = "Emprunts")
 @SuppressWarnings("PersistenceUnitPresent")

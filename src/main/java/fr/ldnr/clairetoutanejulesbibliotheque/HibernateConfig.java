@@ -1,7 +1,8 @@
-/*
- *@Author ClaireToutaneJules
- *@Version 02/July/2021
- *Pour la configuration de hibernate
+/**
+ * @author ClaireToutaneJules
+ * @version 02/July/2021
+ *
+ * Pour la configuration de hibernate
  */
 package fr.ldnr.clairetoutanejulesbibliotheque;
 
@@ -17,8 +18,10 @@ public class HibernateConfig {
     /**
      * Permet de créer une SessionFactory avec les configurations souhaitées
      * automatiquement
+     *
+     * @return la sessionFactory avec la configuration en java (a la place du
+     * fichier xml : hibernate.cfg.xml)
      */
-    //On recree la configuration en java (a la place du fichier xml : hibernate.cfg.xml)
     @Bean
     public SessionFactory sessionFactory() {
 
@@ -36,7 +39,7 @@ public class HibernateConfig {
 
         SessionFactory factory = new org.hibernate.cfg.Configuration()
                 .addProperties(options)
-                //<mapping class="fr.ldnr.julesflores.mavenproject4.Inscription"/> 
+                //<mapping class="fr.ldnr.julesflores.mavenproject4.Livre"/> 
                 .addAnnotatedClass(Livre.class)
                 .addAnnotatedClass(Emprunt.class)
                 .buildSessionFactory();
