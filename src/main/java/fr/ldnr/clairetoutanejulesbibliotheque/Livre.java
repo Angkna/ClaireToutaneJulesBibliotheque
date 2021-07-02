@@ -1,7 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @author ClaireToutaneJules
+ * @version 02/July/2021
+ *
+ * Entité Livre qui sera persisté dans la base de donnée.
  */
 package fr.ldnr.clairetoutanejulesbibliotheque;
 
@@ -13,10 +14,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
 
-/**
- * @author ClaireToutaneJules
- * @version 02/July/2021
- */
 @Entity // La classe sera stockée
 @Table(name = "livres") // Sans précision, la table s'appellera du même nom que la classe.
 @SuppressWarnings("PersistenceUnitPresent")

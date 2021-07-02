@@ -1,7 +1,7 @@
 /**
- * @author Claire
- * @version 28/June/2021 Controller REST pour la mise en base de donnée d'objet
- * livre via la page index.html
+ * @author ClaireToutaneJules
+ * @version 2/Juillet/2021
+ * Controller REST pour la mise en base de donnée d'objet livre via la page index.html
  */
 package fr.ldnr.clairetoutanejulesbibliotheque;
 
@@ -23,7 +23,7 @@ import org.hibernate.Transaction;
 public class Page1Controller {
 
     /**
-     * Logger pour faire du log.
+     * Logger pour faire du log. Controle si les réponses sont corecte.
      */
     public static final Logger logger = LoggerFactory.getLogger(Page1Controller.class);
 
@@ -41,8 +41,8 @@ public class Page1Controller {
     /**
      * methode permettant l'ajout d'un livre en base de données
      *
-     * @param livre
-     * @return String
+     * @param livre recu depuis la page index.js
+     * @return message décrivant le résultat de la fonction
      */
     @RequestMapping(value = "/envoi", method = RequestMethod.POST)
     public String envoi(@RequestBody Livre livre) {

@@ -1,8 +1,9 @@
-/*
+/**
  * Depart de notre application bibliotheque.
  * Point de lancement
- *@author Jules
- *@Version 02/July/2021
+ * 
+ * @author ClaireToutaneJules
+ * @version 02/July/2021
  */
 package fr.ldnr.clairetoutanejulesbibliotheque;
 

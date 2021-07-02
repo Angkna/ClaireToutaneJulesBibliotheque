@@ -1,7 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @author ClaireToutaneJules
+ * @version 2/Juillet/2021
+ * Controller REST pour la gestion d'objet emprunt via la page2.html
  */
 package fr.ldnr.clairetoutanejulesbibliotheque;
 
@@ -20,26 +20,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- *
- * @author stag
- */
 @RestController
 @RequestMapping("/page2")
 public class Page2Controller {
 
-    //on ajoute un logger pour savoir si le serveur fonctionne
+    /**
+     * Logger pour faire du log. Controle si les réponses sont corecte.
+     */
     public static final Logger logger = LoggerFactory.getLogger(Page2Controller.class);
 
+    /**
+     * Permet de créer une SessionFactory avec les configurations souhaitées
+     * automatiquement
+     */
     public SessionFactory sessionFactory;
 
-    // Permet de créer une SessionFactory avec les configurations souhaitées automatiquement
     @Autowired
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
-    //Methode pour crée un emprunt dans la bdd
+    /**
+     * Methode pour crée/persister un emprunt dans la bdd
+     *
+     * @param lightEmprunt envoyé par page2.js
+     * @return message décrivant le résultat de la fonction
+     */
     @RequestMapping(value = "/envoi", method = RequestMethod.POST)
     public String envoi(@RequestBody LightEmprunt lightEmprunt) {
         String message;
@@ -79,7 +85,12 @@ public class Page2Controller {
         return message;
     }
 
-    //méthode pour l'affichage de la liste des livres recherchés
+    /**
+     * méthode pour l'affichage de la liste des livres recherchés
+     *
+     * @param titre partiel du livre écrit dans la page2
+     * @return message décrivant le résultat de la fonction
+     */
     @RequestMapping(value = "/{titre}", method = RequestMethod.GET)
     public List<Livre> lire(@PathVariable String titre) {
         logger.info("Recherche des livres avec leurs titres commençant par : " + titre);
@@ -90,8 +101,13 @@ public class Page2Controller {
         ses.close();
         return livres;
     }
-    
-    //Methode pour edit un emprunt
+
+    /**
+     * Methode pour edit la dateRendu d'un emprunt
+     *
+     * @param lightEmprunt envoyé par page2.js
+     * @return message décrivant le résultat de la fonction
+     */
     @RequestMapping(value = "/envoi", method = RequestMethod.PUT)
     public String editEmprunt(@RequestBody LightEmprunt lightEmprunt) {
         String message;
@@ -127,7 +143,12 @@ public class Page2Controller {
         return message;
     }
 
-    //méthode pour l'affichage de la liste des emprunts dont le livre n'a pas encore été rendu, càd en cours
+    /**
+     * méthode pour l'affichage de la liste des emprunts dont le livre n'a pas
+     * encore été rendu, càd en cours
+     *
+     * @return la liste des emprunts qui n'ont pas de de dateRendu
+     */
     @RequestMapping(value = "/emprunts", method = RequestMethod.GET)
     public List<Emprunt> lireEmprunt() {
         logger.info("Rechargement de la liste des emprunts en cours");
