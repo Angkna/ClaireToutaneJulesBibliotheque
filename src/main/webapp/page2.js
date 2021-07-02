@@ -36,7 +36,7 @@ $(function () {
                 dataType: "json"
             }).done(function (listRetour) { //200
                 if (listRetour.length === 0) {
-                    $("#message").html("Il n'y a pas de livre dans la biblioth&egrave;que ayant un titre commen&ccedil;ant par ce titre.");
+                    $("#message").html("Il n'y a pas de livre dans la biblioth&egrave;que ayant un titre commen&ccedil;ant par " + titre +".");
                     $('#livres tbody tr').remove();
                 } else {
                     $("#message").html("Il y a " + listRetour.length +
@@ -62,26 +62,6 @@ $(function () {
 
     // Affichage de la liste des emprunts
     $(document).ready(afficherEmprunts());
-//    $(document).ready(function(){
-//        $.ajax({
-//            url: "/page2/emprunts",
-//            type: "GET",
-//            dataType: "json"
-//        }).done(function (listeEmprunts) { //200
-//                let lignes = "";
-//                for (const emprunt of listeEmprunts) {
-//                    lignes += "<tr>" +
-//                            "<td>" + emprunt.id + "</td>" +
-//                            "<td>" + emprunt.nomUser + "</td>" +
-//                            "<td>" + emprunt.dateEmprunt + "</td>" +
-//                            "</tr>";
-//                $("#listeEmprunts tbody").html(lignes);
-//            }
-//        }).fail(function () { //400, 501...
-//            $("#message").html("Serveur non disponible !");
-//        });
-//
-//    });
 
     //edition de la date rendu de l'emprunt
     $("#enregistrerDateRendu").on('click', function () {
@@ -105,7 +85,9 @@ $(function () {
 
     });
 });
-
+/*
+ * 
+ */
 var afficherEmprunts = function () {
     $.ajax({
         url: "/page2/emprunts",

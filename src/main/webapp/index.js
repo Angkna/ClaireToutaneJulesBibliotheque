@@ -5,7 +5,9 @@
  */
 
 $(function () {
-    // sélectionner l'élément d'id "envoyer"
+    /**
+     * Methode pour valider le formulaire d'ajout d'un livre a la bdd
+     */
     $("#envoyer").on('click', function () {
         $("#message").html("Envoi !");
         let titre = $("#titre").val();
@@ -18,7 +20,6 @@ $(function () {
         $.ajax({
             url: "/index/envoi",
             type: "POST",
-            //dataType:"json", //le retour est juste un ligne de text, pas un json
             contentType: "application/json",
             data: JSON.stringify({
                 "titre": titre,
@@ -31,6 +32,20 @@ $(function () {
             $("#message").html(retour);
         }).fail(function () { // 400, 501..
             $("#message").html("&Eacute;chec !");
+        });
+    });
+    
+    /**
+     * Methode pour remplir la bdd pour test et démo
+     */
+    $("#generate").on('click', function () {
+        $.ajax({
+            url: "/index/generate",
+            type: "POST"
+        }).done(function () { // 200
+            $("#test").html("Bdd remplie.");
+        }).fail(function () { // 400, 501..
+            $("#test").html("&Eacute;chec !");
         });
     });
 });

@@ -35,6 +35,17 @@ public class Emprunt implements Serializable {
 
     }
 
+    public Emprunt(Livre livre, String nomUser, LocalDate dateEmprunt, LocalDate dateRendu) {
+        this.livre = livre;
+        this.nomUser = nomUser;
+        this.dateEmprunt = dateEmprunt;
+        this.dateRendu = dateRendu;
+    }
+    
+    /**
+    *   @return id
+    *   Methode permettant de récupérer l'id de l'emprunt
+    */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
@@ -69,6 +80,7 @@ public class Emprunt implements Serializable {
     }
 
     public void setDateEmprunt(LocalDate dateEmprunt) {
+        this.livre.setDisponible(false);
         this.dateEmprunt = dateEmprunt;
     }
 
@@ -78,6 +90,7 @@ public class Emprunt implements Serializable {
     }
 
     public void setDateRendu(LocalDate dateRendu) {
+        this.livre.setDisponible(true);
         this.dateRendu = dateRendu;
     }
 
