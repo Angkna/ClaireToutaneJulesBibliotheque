@@ -1,6 +1,6 @@
 /**
- *@Author ClaireToutaneJules
- * @Version 02/July/2021
+ * @author ClaireToutaneJules
+ * @version 02/July/2021
  */
 package fr.ldnr.clairetoutanejulesbibliotheque;
 
