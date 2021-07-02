@@ -29,11 +29,19 @@ public class Emprunt implements Serializable {
     private String nomUser;
     private LocalDate dateEmprunt;
     private LocalDate dateRendu;
-
+/**
+ * Constructeur sans paramètre pour utilisation du bean
+ */
     public Emprunt() {
 
     }
-
+/**
+ * Constructeur avec paramètres pour utilisation de l'objet Emprunt dans l'application
+ * @param livre
+ * @param nomUser
+ * @param dateEmprunt
+ * @param dateRendu 
+ */
     public Emprunt(Livre livre, String nomUser, LocalDate dateEmprunt, LocalDate dateRendu) {
         this.livre = livre;
         this.nomUser = nomUser;
