@@ -1,5 +1,17 @@
+/**
+ * @author ClaireToutaneJules
+ * @version 02/July/2021
+ *  
+ * Fichier JavaScript utilisant jQuery
+ * permettant le lien entre page2.html et le contrôleur
+ * afin de persister un objet emprunt, d'afficher la liste des emprunts en cours et d'ajouter la date de retour d'un emprunt
+ */
+
 $(function () {
-    // Envoi donnée pour crée Emprunt en BDD si valide
+    /**
+     * Méthode pour envoyer les données pour créer un Emprunt en BDD si tous les champs sont valides
+     * Cette méthode s'exécute lorsque l'utilisateur appuie sur le bouton enregistrer de la section "Création d'un emprunt"
+     */
     $("#enregistrerEmprunt").on('click', function () {
         $("#message").html("Enregistrer !");
         let idLivre = $("#idLivre").val();
@@ -20,10 +32,13 @@ $(function () {
         }).fail(function () { // 400, 501..
             $("#message").html("&Eacute;chec de connection avec le back-end !" + idLivre);
         });
-        
+
     });
 
-    //Génération de la liste des Livres en BDD :
+    /**
+     * Méthode pour créer et remplir un tableau HTML avec les Livres enregistrés dans la BDD 
+     * dont le titre commence par les lettres tapées par l'utilisateur
+     */
     $("#titreLivre").on('input', function () {
         let titre = $("#titreLivre").val();
         if (!titre) {
@@ -36,7 +51,7 @@ $(function () {
                 dataType: "json"
             }).done(function (listRetour) { //200
                 if (listRetour.length === 0) {
-                    $("#message").html("Il n'y a pas de livre dans la biblioth&egrave;que ayant un titre commen&ccedil;ant par " + titre +".");
+                    $("#message").html("Il n'y a pas de livre dans la biblioth&egrave;que ayant un titre commen&ccedil;ant par " + titre + ".");
                     $('#livres tbody tr').remove();
                 } else {
                     $("#message").html("Il y a " + listRetour.length +
@@ -60,10 +75,15 @@ $(function () {
         }
     });
 
-    // Affichage de la liste des emprunts
+    /**
+     * Appel de la méthode afficherEmprunts() pour afficher la liste des emprunts
+     */
     $(document).ready(afficherEmprunts());
 
-    //edition de la date rendu de l'emprunt
+    /**
+     * Méthode pour éditer la date rendu de l'emprunt
+     * Cette méthode s'exécute lorsque l'utilisateur appuie sur le bouton enregistrer de la section "Ajout de la date de retour d'un livre"
+     */
     $("#enregistrerDateRendu").on('click', function () {
         $("#message2").html("Modification en cours");
         let idEmprunt = $("#IdDeLEmprunt").val();
@@ -85,8 +105,10 @@ $(function () {
 
     });
 });
+
 /*
- * 
+ * Méthode pour créer et remplir un tableau HTML avec les Emprunts enregistrés dans la BDD 
+ * qui sont encore en cours (c.à.d. qui n'ont pas encore de date de retour)
  */
 var afficherEmprunts = function () {
     $.ajax({
