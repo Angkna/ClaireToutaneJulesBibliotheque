@@ -28,6 +28,10 @@ $(function () {
             })
         }).done(function (retour) { // 200
             $("#message").html(retour);
+            $("#idLivre").val("");
+            $("#dateEmprunt").val("");
+            $("#nomEmprunteur").val("");
+            $("#titreLivre").val("");
             afficherEmprunts();
         }).fail(function () { // 400, 501..
             $("#message").html("&Eacute;chec de connection avec le back-end !" + idLivre);
@@ -58,7 +62,7 @@ $(function () {
                             " livre(s) dans la biblioth&egrave;que ayant un titre commen&ccedil;ant par " + titre + ".");
                     let lignes = "";
                     for (const livre of listRetour) {
-                        lignes += "<tr>" +
+                        lignes += "<tr "+ (livre.disponible ? 'class=""' : 'class="indisponible"') + ">" +
                                 "<th scope='row'>" + livre.id + "</th>" +
                                 "<td>" + livre.titre + "</td>" +
                                 "<td>" + livre.nomAuteur + "</td>" +
@@ -90,7 +94,7 @@ $(function () {
         let dateDeRendu = $("#dateDeRendu").val();
         $.ajax({
             url: "page2/envoi",
-            type: "PUT",
+            type: "PATCH",
             contentType: "application/json",
             data: JSON.stringify({
                 "idEmprunt": idEmprunt,

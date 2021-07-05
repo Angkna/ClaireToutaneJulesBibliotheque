@@ -108,7 +108,7 @@ public class Page2Controller {
      * @param lightEmprunt envoyé par page2.js
      * @return message décrivant le résultat de la fonction
      */
-    @RequestMapping(value = "/envoi", method = RequestMethod.PUT)
+    @RequestMapping(value = "/envoi", method = RequestMethod.PATCH)
     public String editEmprunt(@RequestBody LightEmprunt lightEmprunt) {
         String message;
         logger.info("détail emprunt a modif : " + lightEmprunt.getIdEmprunt() + " : " + lightEmprunt.getDateRendu());

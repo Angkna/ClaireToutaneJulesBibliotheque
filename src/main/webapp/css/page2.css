@@ -64,5 +64,10 @@ th {
 }
 
 .indisponible{
-    color: #ae59b6;
+    color: #939393;
+}
+
+.scrollable {
+    overflow: scroll;
+    height: 250px;
 }
