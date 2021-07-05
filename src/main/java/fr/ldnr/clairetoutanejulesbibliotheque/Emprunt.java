@@ -119,7 +119,6 @@ public class Emprunt implements Serializable {
      * @param dateEmprunt
      */
     public void setDateEmprunt(LocalDate dateEmprunt) {
-        this.livre.setDisponible(false);
         this.dateEmprunt = dateEmprunt;
     }
 
@@ -140,7 +139,6 @@ public class Emprunt implements Serializable {
      * @param dateRendu
      */
     public void setDateRendu(LocalDate dateRendu) {
-        this.livre.setDisponible(true);
         this.dateRendu = dateRendu;
     }
 
