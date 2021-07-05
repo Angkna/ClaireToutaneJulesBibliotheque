@@ -25,7 +25,7 @@ public class Livre implements Serializable {
     private String editeur;
     private String nomAuteur;
     private String prenomAuteur;
-    private boolean disponible;
+    private boolean disponible; // ATTENTION : redondant (car check via les emprunt possible)
 
     /**
      * Constructeur sans paramètre Ce constructeur définit par défaut l'id à 0

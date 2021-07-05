@@ -2,7 +2,6 @@
 
 <html lang="fr">
     <head>
-        <title>Gestion des emprunts</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -10,6 +9,7 @@
         crossorigin="anonymous"></script>
         <script src="page2.js" defer></script>
         <link rel="stylesheet" type="text/css" href="css/page2.css"/>
+        <title>Gestion des emprunts</title>
     </head>
     <body>
         <button id="ajout" onclick="window.location.href = '/index.html';">Ajouter un livre</button>
@@ -43,7 +43,7 @@
             </div>
             <p id="message"></p>
 
-            <div id="emprunt" class="scrollable"> 
+            <div id="emprunt"> 
                 <table id="livres">
                     <thead>
                         <tr>
@@ -65,7 +65,7 @@
 
         <section>
             <h2>Affichage de la liste des emprunts en cours</h2>
-            <div class="scrollable">
+            <div>
                 <table id="listeEmprunts">
                     <thead>
                         <tr>
